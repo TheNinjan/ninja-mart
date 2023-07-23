@@ -1,0 +1,21 @@
+{
+    "version": 2,
+    "builds": [
+      { "src": "client/package.json", "use": "@vercel/static-build" },
+      { "src": "strapi_server" }
+    ],
+    "routes": [
+      { "src": "/api/(.*)", "dest": "strapi_server/$1" },
+      { "src": "/(.*)", "dest": "client/$1" }
+    ],
+    "env": {
+      "STRAPI_API_URL": "/api"
+    },
+    "rewrites": [
+      {
+        "source": "/api/:any*",
+        "destination": "/api/:any*"
+      }
+    ]
+  }
+  
